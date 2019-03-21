@@ -18,3 +18,11 @@ class ModelCalendar(HTMLCalendar):
         if day != 0:
             return "<td><span>{0}</span><ul> {1} </ul></td>".format(day, d)
         return '<td></td>'
+
+    def formatweek(self, theweek, query):
+        week = ''
+        for d, weekday in theweek:
+            week += self.formatday(d, query)
+        return '<tr>{}</tr>'.format(week)
+
+   
