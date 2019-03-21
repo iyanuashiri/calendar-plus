@@ -25,4 +25,13 @@ class ModelCalendar(HTMLCalendar):
             week += self.formatday(d, query)
         return '<tr>{}</tr>'.format(week)
 
-   
+    def formatmonth(self, query, withyear=True):
+        objects = query
+        calendar = f'<table class="table table-bordered">\n'
+        calendar += '{}\n'.format(self.formatmonthname(self.year, self.month, withyear=withyear))
+        calendar += '{}\n'.format(self.formatweekheader())
+
+        for week in self.monthdays2calendar(self.year, self.month):
+            calendar += '{}\n'.format(self.formatweek(week, objects))
+
+        return calendar
